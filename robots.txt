@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ammarmando.github.io/mandostands/sitemap.xml
