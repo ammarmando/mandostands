@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="es" class="version-a">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mando Stands</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Stands para ferias en propiedad. Paredes luminosas de doble diseño desde 2.500 €. Fáciles de transportar, guardar y montar. Entrega en una o dos semanas.">
+<meta property="og:title" content="Mando Stands · Deja de alquilar tu stand">
+<meta property="og:description" content="Stands luminosos de doble cara desde 2.500 €. Cómpralo una vez y úsalo en todas tus ferias.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%230B0B0D'/%3E%3Crect x='6' y='6' width='52' height='52' rx='5' fill='none' stroke='%23FF6B1A' stroke-width='4'/%3E%3Cpath d='M18 47V18l14 15 14-15v29' fill='none' stroke='%23fff' stroke-width='7'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: escaparate de feria. Titulares anchos y pesados como rótulos de stand, paneles que se iluminan. */
+:root {
+  --font-display: "Archivo", "Arial Black", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Hanken Grotesk", "Helvetica Neue", Arial, sans-serif;
+  --step--1: .875rem; --step-0: 1rem; --step-1: 1.1875rem;
+  --step-2: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
+  --step-3: clamp(2rem, 1.3rem + 3vw, 3.4rem);
+  --step-4: clamp(2.6rem, 1.4rem + 5.4vw, 5.4rem);
+  --radius: 10px; --wrap: 1180px;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+h1, h2, h3 { margin: 0; text-wrap: balance; font-family: var(--font-display); line-height: 1; }
+p { margin: 0; }
+.wrap { max-width: var(--wrap); margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 760px) { .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); } }
+
+.eyebrow { font-size: var(--step--1); font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+
+/* Botones */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 12px 22px; border-radius: 999px; font: 700 var(--step-0)/1.2 var(--font-body); text-decoration: none; cursor: pointer; border: 1.5px solid transparent; transition: transform .15s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease; }
+.btn:active { transform: translateY(1px); }
+.btn-sm { min-height: 40px; padding: 8px 16px; font-size: .9375rem; }
+.btn-accent { background: var(--accent); color: var(--accent-ink); }
+.btn-ghost { background: transparent; color: var(--ink); border-color: var(--line-strong); }
+.btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+/* Cabecera */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: var(--top-bg); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--bg); }
+.top-in { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 10px; }
+.logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
+.logo-mark { width: 38px; height: 38px; flex: none; }
+.logo-text { display: grid; line-height: .9; }
+.logo-mando { font-family: var(--font-display); font-weight: 900; font-stretch: 125%; font-size: 1.45rem; letter-spacing: .01em; }
+.logo-stands { font-family: var(--font-display); font-weight: 500; font-stretch: 100%; font-size: .78rem; letter-spacing: .42em; text-transform: lowercase; color: var(--muted); padding-left: 2px; }
+.nav { display: flex; align-items: center; gap: 22px; }
+.nav a:not(.btn) { text-decoration: none; font-weight: 600; color: var(--muted); }
+.nav a:not(.btn):hover { color: var(--ink); }
+@media (max-width: 820px) { .nav a:not(.btn) { display: none; } }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; }
+.hero-in { position: relative; z-index: 1; display: grid; gap: 40px; align-items: center; padding-block: 48px 64px; grid-template-columns: 1fr; }
+@media (min-width: 960px) { .hero-in { grid-template-columns: 1.1fr .9fr; padding-block: 88px 104px; } }
+.hero-copy { display: grid; gap: 22px; min-width: 0; }
+.hero h1 { font-weight: 900; font-stretch: 112%; font-size: var(--step-4); letter-spacing: -.01em; line-height: .95; }
+.hero h1 .hl { display: block; color: var(--accent); }
+.lede { font-size: var(--step-1); color: var(--muted); max-width: 34em; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.spot { position: absolute; pointer-events: none; }
+
+/* Stand del hero */
+.stand { margin: 0; display: grid; justify-items: center; gap: 0; min-width: 0; }
+.wall-wrap { perspective: 1200px; width: min(78%, 420px); }
+.wall { position: relative; aspect-ratio: 3 / 4; transform-style: preserve-3d; transition: transform 1s cubic-bezier(.2,.7,.2,1); }
+.wall.flipped { transform: rotateY(180deg); }
+.face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 6px; display: grid; align-content: center; justify-items: center; gap: 10px; padding: 24px; text-align: center; }
+.face strong { font-family: var(--font-display); font-weight: 900; font-stretch: 125%; font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem); line-height: .95; }
+.face span:not(.face-tag) { font-weight: 600; }
+.face-tag { position: absolute; top: 12px; left: 14px; font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; opacity: .75; }
+.face-b { transform: rotateY(180deg); }
+.counter { width: min(70%, 300px); height: 74px; margin-top: -40px; position: relative; z-index: 2; border-radius: 4px; }
+.counter span { position: absolute; inset: 10px 14px auto; height: 4px; border-radius: 2px; }
+.floor { width: min(100%, 480px); height: 16px; border-radius: 50%; margin-top: 6px; }
+.stand figcaption { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: center; justify-content: center; text-align: center; }
+.cap { color: var(--muted); font-size: var(--step--1); }
+
+/* Datos */
+.proof { border-block: 1px solid var(--line); background: var(--bg-2); }
+.proof-in { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); }
+@media (min-width: 760px) { .proof-in { grid-template-columns: repeat(4, 1fr); } }
+.stat { background: var(--bg-2); padding: 22px 16px; display: grid; gap: 2px; text-align: center; }
+.stat strong { font-family: var(--font-display); font-weight: 800; font-stretch: 112%; font-size: clamp(1.25rem, 1rem + 1.1vw, 1.9rem); white-space: nowrap; color: var(--ink); font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: var(--step--1); }
+
+/* Secciones */
+.section > .wrap { padding-block: 72px; display: grid; gap: 36px; }
+@media (min-width: 960px) { .section > .wrap { padding-block: 104px; } }
+.section.alt { background: var(--bg-2); }
+.head { display: grid; gap: 12px; max-width: 48rem; }
+.head h2 { font-weight: 900; font-stretch: 108%; font-size: var(--step-3); line-height: 1; }
+.sub { color: var(--muted); font-size: var(--step-1); max-width: 40em; }
+
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; min-width: 0; transition: box-shadow .5s ease, border-color .5s ease; }
+.panel h3 { font-size: var(--step-1); font-weight: 800; font-stretch: 105%; margin-bottom: 8px; }
+.panel p { color: var(--muted); }
+
+.cards4 { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .cards4 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .cards4 { grid-template-columns: repeat(4, 1fr); } }
+
+/* Calculadora */
+.calc-grid { grid-template-columns: 1fr; }
+@media (min-width: 960px) { .calc-grid { grid-template-columns: 1fr 1fr; align-items: start; } .calc-grid .head { grid-column: 1 / -1; } }
+.calc { display: grid; gap: 20px; }
+.field { display: grid; gap: 8px; min-width: 0; }
+.field label { font-weight: 600; font-size: .9375rem; }
+.field input:not([type=range]), .field select, .field textarea { width: 100%; font: inherit; color: var(--ink); background: var(--input-bg); border: 1px solid var(--line-strong); border-radius: 8px; padding: 12px 14px; min-height: 48px; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: var(--accent); }
+.money { position: relative; }
+.money input { padding-right: 36px !important; font-variant-numeric: tabular-nums; font-weight: 700; }
+.money span { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--muted); font-weight: 700; }
+input[type=range] { width: 100%; accent-color: var(--accent); min-height: 32px; }
+output { font-weight: 700; font-variant-numeric: tabular-nums; }
+.result { display: grid; gap: 16px; }
+.res-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.res-row span { color: var(--muted); font-weight: 600; }
+.res-row strong { font-family: var(--font-display); font-weight: 900; font-stretch: 110%; font-size: var(--step-2); font-variant-numeric: tabular-nums; color: var(--ink); }
+.res-row.big strong { font-size: var(--step-3); color: var(--accent); }
+.res-row strong.neg { color: var(--muted); }
+.bars { display: grid; gap: 10px; }
+.bar-row { display: grid; grid-template-columns: 1fr; gap: 4px; }
+.bar-row span { font-size: var(--step--1); color: var(--muted); }
+.bar-row em { font-style: normal; font-weight: 700; font-size: var(--step--1); font-variant-numeric: tabular-nums; }
+.bar { height: 12px; background: var(--track); border-radius: 6px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: var(--muted); border-radius: 6px; transition: width .5s ease; }
+.bar i.mine { background: var(--accent); }
+.note { font-weight: 600; color: var(--ink) !important; }
+
+/* Modelos */
+.models { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .models { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .models { grid-template-columns: repeat(4, 1fr); } }
+.model { position: relative; display: grid; gap: 10px; align-content: start; }
+.model ul { margin: 4px 0 8px; padding-left: 18px; color: var(--muted); display: grid; gap: 4px; }
+.model .size { font-weight: 600; color: var(--ink) !important; }
+.price { font-family: var(--font-display); font-weight: 900; font-stretch: 110%; font-size: var(--step-2); color: var(--ink) !important; font-variant-numeric: tabular-nums; }
+.price small { font-family: var(--font-body); font-weight: 600; font-size: .875rem; color: var(--muted); }
+.model .btn { margin-top: auto; }
+.badge { position: absolute; top: -12px; right: 16px; background: var(--accent); color: var(--accent-ink); font-weight: 800; font-size: .75rem; letter-spacing: .06em; text-transform: uppercase; padding: 5px 10px; border-radius: 999px; }
+
+/* Huecos de imagen */
+.slot { position: relative; margin: 0; border-radius: 8px; overflow: hidden; background: var(--slot-bg); border: 1.5px dashed var(--line-strong); aspect-ratio: 4 / 3; display: grid; place-items: center; max-width: 100%; }
+.slot > span { font-size: .8125rem; color: var(--muted); font-weight: 600; padding: 8px; text-align: center; word-break: break-all; }
+.slot > span::before { content: "Hueco para foto"; display: block; font-weight: 800; color: var(--ink); margin-bottom: 2px; word-break: normal; }
+.slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.slot.has-img { border-style: solid; border-color: var(--line); }
+.slot.has-img > span { display: none; }
+.gallery { display: grid; gap: 12px; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 900px) { .gallery { grid-template-columns: repeat(3, 1fr); } }
+
+/* Pasos */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 640px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+.steps li { display: grid; gap: 6px; align-content: start; }
+.n { font-family: var(--font-display); font-weight: 900; font-size: 2.2rem; line-height: 1; color: var(--accent); }
+
+/* Opiniones */
+.quotes { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 860px) { .quotes { grid-template-columns: repeat(3, 1fr); } }
+.quote { margin: 0; display: grid; gap: 14px; align-content: start; }
+.quote blockquote { margin: 0; font-size: var(--step-1); font-weight: 600; color: var(--ink); }
+.quote figcaption { color: var(--muted); font-size: var(--step--1); font-weight: 600; }
+.quote.is-empty { border-style: dashed; }
+.quote.is-empty blockquote { color: var(--muted); font-weight: 500; }
+.slot-avatar { width: 64px; height: 64px; aspect-ratio: 1; border-radius: 50%; }
+.slot-avatar > span { font-size: 0; padding: 0; }
+.slot-avatar > span::before { font-size: .5625rem; content: "Foto"; }
+
+/* Preguntas */
+.faq-grid { grid-template-columns: 1fr; }
+@media (min-width: 960px) { .faq-grid { grid-template-columns: .8fr 1.2fr; align-items: start; } }
+.faq { display: grid; border-top: 1px solid var(--line-strong); min-width: 0; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { cursor: pointer; list-style: none; padding: 18px 0; font-weight: 700; font-size: var(--step-1); display: flex; justify-content: space-between; gap: 16px; align-items: baseline; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--accent); font-size: 1.4rem; line-height: 1; font-weight: 700; }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { padding-bottom: 18px; color: var(--muted); max-width: 42em; }
+
+/* Contacto */
+.contact-grid { grid-template-columns: 1fr; }
+@media (min-width: 960px) { .contact-grid { grid-template-columns: .85fr 1.15fr; align-items: start; gap: 56px; } }
+.direct { display: grid; gap: 10px; justify-items: start; margin-top: 10px; }
+.mail { color: var(--muted); }
+.mail span { color: var(--ink); font-weight: 700; user-select: all; word-break: break-all; }
+.form { display: grid; gap: 16px; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .form { grid-template-columns: 1fr 1fr; } .form .full { grid-column: 1 / -1; } }
+.form-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.status { color: var(--muted); font-size: .9375rem; min-height: 1.2em; }
+
+/* Pie */
+.foot { border-top: 1px solid var(--line); }
+.foot-in { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-block: 28px calc(28px + 72px); color: var(--muted); font-size: var(--step--1); }
+.logo.small .logo-mando { font-size: 1.1rem; }
+.logo.small .logo-stands { font-size: .62rem; }
+
+/* WhatsApp flotante */
+.wa-float { position: fixed; z-index: 25; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; background: #25D366; color: #08230f; box-shadow: 0 8px 24px rgba(0,0,0,.28); }
+.wa-float svg { width: 30px; height: 30px; }
+
+/* Símbolos de las ventajas. Sin animación se ven completos y quietos. */
+.benefit { display: grid; gap: 4px; align-content: start; }
+.ico { width: 64px; height: 64px; margin-bottom: 10px; fill: none; stroke: var(--accent); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+.ico .relleno { fill: var(--accent); stroke: none; }
+.ico text { fill: var(--ico-text); stroke: none; font: 900 15px var(--font-display); }
+.ico .panel-ico { fill: var(--accent); stroke: none; }
+.ico .panel-ico.b { fill: var(--ink); }
+.ico .cara { transform-box: fill-box; transform-origin: center; }
+.ico .cara-2 { transform: scaleX(0); }
+.ico .cara-2 text { fill: var(--bg); }
+.ico .p, .ico .poste, .ico .techo { transform-box: fill-box; }
+.ico .poste { transform-origin: bottom; }
+.ico .techo { transform-origin: center; }
+.ico .llave { transform-box: view-box; transform-origin: 15px 24px; }
+.ico .ok { stroke: var(--ok); }
+
+@keyframes llave { 0%, 55%, 100% { transform: rotate(0); } 65% { transform: rotate(-28deg); } 80% { transform: rotate(-28deg); } }
+@keyframes giro-1 { 0%, 42% { transform: scaleX(1); } 50%, 92% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+@keyframes giro-2 { 0%, 50% { transform: scaleX(0); } 58%, 84% { transform: scaleX(1); } 92%, 100% { transform: scaleX(0); } }
+@keyframes pliega-1 { 0%, 20%, 100% { transform: translateX(0); } 45%, 70% { transform: translateX(13px); } }
+@keyframes pliega-3 { 0%, 20%, 100% { transform: translateX(0); } 45%, 70% { transform: translateX(-13px); } }
+@keyframes poste { 0% { transform: scaleY(0); } 25%, 100% { transform: scaleY(1); } }
+@keyframes techo { 0%, 25% { transform: scaleX(0); } 45%, 100% { transform: scaleX(1); } }
+@keyframes ok { 0%, 45% { stroke-dashoffset: 24; } 65%, 90% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 24; } }
+.ico-llave .llave { animation: llave 3.6s ease-in-out infinite; }
+.ico-giro .cara-1 { animation: giro-1 4.4s ease-in-out infinite; }
+.ico-giro .cara-2 { animation: giro-2 4.4s ease-in-out infinite; }
+.ico-pliega .p-1 { animation: pliega-1 3.8s ease-in-out infinite; }
+.ico-pliega .p-3 { animation: pliega-3 3.8s ease-in-out infinite; }
+.ico-monta .poste { animation: poste 4s cubic-bezier(.3,.7,.2,1) infinite; }
+.ico-monta .techo { animation: techo 4s cubic-bezier(.3,.7,.2,1) infinite; }
+.ico-monta .ok { stroke-dasharray: 24; animation: ok 4s ease-out infinite; }
+
+/* Iconos de los pasos */
+.paso-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+.ico-paso { width: 40px; height: 40px; fill: none; stroke: var(--muted); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: stroke .3s ease, transform .3s ease; }
+.steps li:hover .ico-paso, .steps li.lit .ico-paso { stroke: var(--accent); transform: translateY(-2px); }
+
+/* Precio «desde»: la palabra va encima y «+ IVA» al lado del importe */
+.price { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 6px; }
+.price small:first-child { flex-basis: 100%; font-size: .8125rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: -2px; }
+
+/* Versión A: entrar en un stand iluminado. Fondo casi negro, focos y resplandor naranja. Solo tema oscuro. */
+:root {
+  --bg: #0A0A0C; --bg-2: #111115; --panel: #16161B; --ink: #F5F3EF; --muted: #A9A7AF;
+  --line: #24242B; --line-strong: #3A3A44; --accent: #FF6B1A; --accent-2: #FFC23D; --accent-ink: #170A02;
+  --glow: rgba(255, 107, 26, .5); --top-bg: rgba(10, 10, 12, .78); --input-bg: #0E0E12; --slot-bg: #101014; --track: #24242B;
+  color-scheme: dark;
+}
+.btn-accent { box-shadow: 0 0 0 0 var(--glow), 0 6px 24px rgba(255, 107, 26, .35); }
+.btn-accent:hover { box-shadow: 0 0 28px 2px var(--glow); }
+.hero { background: radial-gradient(120% 70% at 50% -10%, #1d120b 0%, var(--bg) 60%); }
+.spot { width: 70vw; height: 120%; top: -20%; filter: blur(40px); opacity: .55; mix-blend-mode: screen; }
+.spot-1 { left: -20vw; background: conic-gradient(from 160deg at 50% 0%, transparent 0deg, rgba(255,107,26,.35) 18deg, transparent 36deg); animation: barrido 9s ease-in-out infinite alternate; }
+.spot-2 { right: -25vw; background: conic-gradient(from 170deg at 50% 0%, transparent 0deg, rgba(255,194,61,.22) 16deg, transparent 32deg); animation: barrido 11s ease-in-out infinite alternate-reverse; }
+@keyframes barrido { from { transform: rotate(-8deg); } to { transform: rotate(8deg); } }
+.hero h1 .hl { text-shadow: 0 0 32px rgba(255, 107, 26, .55); }
+
+.face { box-shadow: 0 0 0 3px #2a1406, 0 0 60px 6px var(--glow), inset 0 0 60px rgba(255,255,255,.12); }
+.face-a { background: radial-gradient(90% 70% at 50% 40%, #FFB070 0%, #FF6B1A 45%, #C2410C 100%); color: #1a0b02; }
+.face-b { background: radial-gradient(90% 70% at 50% 40%, #FFE38A 0%, #FFC23D 45%, #B7791F 100%); color: #1d1402; }
+.counter { background: linear-gradient(#1c1c22, #121216); border: 1px solid #2c2c34; box-shadow: 0 20px 40px rgba(0,0,0,.6); }
+.counter span { background: var(--accent); box-shadow: 0 0 16px 2px var(--glow); }
+.floor { background: radial-gradient(closest-side, rgba(255,107,26,.35), transparent); }
+
+.proof { background: #0D0D10; }
+.stat { background: #0D0D10; }
+.stat strong { color: var(--accent); text-shadow: 0 0 22px rgba(255,107,26,.35); }
+
+/* Paneles que se encienden al entrar en pantalla */
+.glow.lit { border-color: rgba(255, 107, 26, .55); box-shadow: 0 0 0 1px rgba(255,107,26,.25), 0 0 40px -6px var(--glow), inset 0 1px 0 rgba(255,255,255,.04); }
+.model.featured { border-color: rgba(255,107,26,.6); }
+.res-row.big strong { text-shadow: 0 0 26px rgba(255,107,26,.45); }
+.bar i.mine { box-shadow: 0 0 14px var(--glow); }
+.section.alt { background: linear-gradient(180deg, #0E0E12, #121217); }
+:root { --ico-text: #170A02; --ok: #FFC23D; }
+.ico { filter: drop-shadow(0 0 6px rgba(255, 107, 26, .55)); }
+
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="#inicio" aria-label="Mando Stands, inicio">
+      <svg class="logo-mark" viewBox="0 0 64 64" aria-hidden="true"><rect x="4" y="4" width="56" height="56" rx="5" fill="none" stroke="var(--accent)" stroke-width="4"/><path d="M17 48V17l15 16 15-16v31" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="miter" stroke-linecap="square"/></svg>
+      <span class="logo-text"><span class="logo-mando">MANDO</span><span class="logo-stands">stands</span></span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#modelos">Modelos</a>
+      <a href="#ahorro">Ahorro</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+      <a class="btn btn-accent btn-sm js-wa" href="#contacto" data-msg="Hola, quiero información sobre un stand de Mando Stands.">WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="spot spot-1" aria-hidden="true"></div>
+    <div class="spot spot-2" aria-hidden="true"></div>
+    <div class="wrap hero-in">
+      <div class="hero-copy">
+        <p class="eyebrow">Stands para ferias en propiedad</p>
+        <h1>Deja de alquilar tu stand. <span class="hl">Cómpralo una vez.</span></h1>
+        <p class="lede">Stands luminosos de doble cara desde 2.500 €. Viajan en poco espacio, se montan sin complicaciones y te sirven para todas tus ferias. Te lo entregamos en una o dos semanas.</p>
+        <div class="actions">
+          <a class="btn btn-accent" href="#ahorro">Calcula tu ahorro</a>
+          <a class="btn btn-ghost js-wa" href="#contacto" data-msg="Hola, quiero un presupuesto para un stand de Mando Stands.">Pide presupuesto por WhatsApp</a>
+        </div>
+      </div>
+      <figure class="stand" aria-label="Stand de Mando Stands con pared luminosa de doble diseño">
+        <div class="wall-wrap">
+          <div class="wall" id="pared">
+            <div class="face face-a">
+              <span class="face-tag">Cara A</span>
+              <strong>TU MARCA</strong>
+              <span>Lo que vendes, bien iluminado</span>
+            </div>
+            <div class="face face-b">
+              <span class="face-tag">Cara B</span>
+              <strong>OTRA FERIA</strong>
+              <span>Otro diseño, la misma pared</span>
+            </div>
+          </div>
+        </div>
+        <div class="counter" aria-hidden="true"><span></span></div>
+        <div class="floor" aria-hidden="true"></div>
+        <figcaption>
+          <button class="btn btn-ghost btn-sm" type="button" id="girar">Ver la otra cara</button>
+          <span class="cap">Cada pared lleva dos diseños. Son dos stands en uno.</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="proof" aria-label="Datos de Mando Stands">
+    <div class="wrap proof-in">
+      <div class="stat"><strong>+10</strong><span>stands entregados</span></div>
+      <div class="stat"><strong>1–2 semanas</strong><span>de entrega</span></div>
+      <div class="stat"><strong>2 diseños</strong><span>en cada pared</span></div>
+      <div class="stat"><strong>2.500 €</strong><span>precio desde</span></div>
+    </div>
+  </section>
+
+  <section class="section" id="por-que">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Por qué comprarlo</p>
+        <h2>Lo que pagas por alquilar una feria, invertido en un stand para siempre</h2>
+      </div>
+      <div class="cards4">
+        <article class="panel glow benefit"><svg class="ico ico-llave" viewBox="0 0 48 48" aria-hidden="true"><g class="llave"><circle cx="15" cy="24" r="8"/><circle cx="15" cy="24" r="2.5" class="relleno"/><path d="M23 24h19M35 24v6M40 24v4"/></g></svg><h3>Es tuyo</h3><p>Lo pagas una vez y lo usas en todas tus ferias. Sin alquiler cada vez.</p></article>
+        <article class="panel glow benefit"><svg class="ico ico-giro" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 42h36"/><g class="cara cara-1"><rect x="12" y="6" width="24" height="30" rx="2" class="panel-ico"/><text x="24" y="27" text-anchor="middle">A</text></g><g class="cara cara-2"><rect x="12" y="6" width="24" height="30" rx="2" class="panel-ico b"/><text x="24" y="27" text-anchor="middle">B</text></g></svg><h3>Dos stands en uno</h3><p>Las paredes luminosas tienen diseño por delante y por detrás. Cambias de imagen girando la pared.</p></article>
+        <article class="panel glow benefit"><svg class="ico ico-pliega" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 42h36"/><rect class="p p-1" x="6" y="10" width="10" height="26" rx="1.5"/><rect class="p p-2" x="19" y="10" width="10" height="26" rx="1.5"/><rect class="p p-3" x="32" y="10" width="10" height="26" rx="1.5"/></svg><h3>Viaja en poco espacio</h3><p>Se desmonta en piezas ligeras que se transportan y se guardan sin ocupar un almacén.</p></article>
+        <article class="panel glow benefit"><svg class="ico ico-monta" viewBox="0 0 48 48" aria-hidden="true"><path d="M4 42h40"/><path class="poste poste-1" d="M12 42V12"/><path class="poste poste-2" d="M36 42V12"/><path class="techo" d="M10 12h28"/><path class="ok" d="M18 26l5 5 9-10"/></svg><h3>Se monta sin complicaciones</h3><p>Pensado para que lo monte tu propio equipo. Si lo prefieres, lo montamos nosotros.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="ahorro">
+    <div class="wrap calc-grid">
+      <div class="head">
+        <p class="eyebrow">Calculadora de ahorro</p>
+        <h2>¿Cuánto te ahorras dejando de alquilar?</h2>
+        <p class="sub">Pon lo que pagas ahora y a cuántas ferias vas al año. El cálculo es orientativo.</p>
+      </div>
+      <form class="calc panel" id="calc" novalidate>
+        <div class="field"><label for="c-alquiler">Lo que pagas por alquilar el stand en cada feria</label><div class="money"><input id="c-alquiler" type="number" inputmode="numeric" min="0" step="100" value="6000"><span>€</span></div></div>
+        <div class="field"><label for="c-ferias">Ferias al año</label><input id="c-ferias" type="range" min="1" max="12" value="3"><output id="c-ferias-out" for="c-ferias">3 ferias</output></div>
+        <div class="field"><label for="c-modelo">Modelo de Mando Stands</label>
+          <select id="c-modelo">
+            <option value="2500">MANDO 3 · 3 × 3 m · desde 2.500 €</option>
+            <option value="3500" selected>MANDO 6 · 6 × 3 m · desde 3.500 €</option>
+            <option value="4200">MANDO 6 Esquina · 6 × 3 m · desde 4.200 €</option>
+            <option value="5000">MANDO Isla · 6 × 6 m · desde 5.000 €</option>
+          </select>
+        </div>
+        <div class="field"><label for="c-extra">Coste por feria de transporte y montaje</label><div class="money"><input id="c-extra" type="number" inputmode="numeric" min="0" step="50" value="300"><span>€</span></div></div>
+      </form>
+      <div class="result panel glow" aria-live="polite">
+        <div class="res-row"><span>Ahorro el primer año</span><strong id="r-1">–</strong></div>
+        <div class="res-row big"><span>Ahorro en tres años</span><strong id="r-3">–</strong></div>
+        <div class="bars" aria-hidden="true">
+          <div class="bar-row"><span>Alquilar, 3 años</span><div class="bar"><i id="b-alq"></i></div><em id="v-alq"></em></div>
+          <div class="bar-row"><span>Mando Stands, 3 años</span><div class="bar"><i id="b-mando" class="mine"></i></div><em id="v-mando"></em></div>
+        </div>
+        <p class="note" id="r-amort"></p>
+        <a class="btn btn-accent js-wa" id="calc-cta" href="#contacto" data-msg="Hola, he usado la calculadora de Mando Stands y quiero un presupuesto.">Quiero este ahorro</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="modelos">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Modelos y precios</p>
+        <h2>Cuatro modelos para los espacios más habituales</h2>
+        <p class="sub">Precios desde, sin IVA. Incluyen el diseño de las dos caras, la fabricación y las bolsas de transporte. El precio final depende de la medida y de los extras.</p>
+      </div>
+      <div class="models">
+        <article class="model panel glow">
+          <div class="slot slot-model"><img src="img/modelo-mando-3.jpg" alt="Modelo MANDO 3"><span>img/modelo-mando-3.jpg</span></div>
+          <h3>MANDO 3</h3><p class="size">3 × 3 m · en línea</p>
+          <ul><li>Pared de fondo luminosa de 3 m</li><li>Doble diseño</li><li>Mostrador luminoso</li></ul>
+          <p class="price"><small>desde</small> 2.500 € <small>+ IVA</small></p>
+          <a class="btn btn-ghost js-wa" href="#contacto" data-msg="Hola, me interesa el modelo MANDO 3 de 3 × 3 m.">Lo quiero</a>
+        </article>
+        <article class="model panel glow featured">
+          <span class="badge">El más pedido</span>
+          <div class="slot slot-model"><img src="img/modelo-mando-6.jpg" alt="Modelo MANDO 6"><span>img/modelo-mando-6.jpg</span></div>
+          <h3>MANDO 6</h3><p class="size">6 × 3 m · en línea</p>
+          <ul><li>Pared de fondo luminosa de 6 m</li><li>Doble diseño</li><li>Mostrador luminoso y estante</li></ul>
+          <p class="price"><small>desde</small> 3.500 € <small>+ IVA</small></p>
+          <a class="btn btn-accent js-wa" href="#contacto" data-msg="Hola, me interesa el modelo MANDO 6 de 6 × 3 m.">Lo quiero</a>
+        </article>
+        <article class="model panel glow">
+          <div class="slot slot-model"><img src="img/modelo-mando-6-esquina.jpg" alt="Modelo MANDO 6 Esquina"><span>img/modelo-mando-6-esquina.jpg</span></div>
+          <h3>MANDO 6 Esquina</h3><p class="size">6 × 3 m · esquina</p>
+          <ul><li>Fondo de 6 m y lateral de 3 m</li><li>Las dos paredes con doble diseño</li><li>Mostrador luminoso</li></ul>
+          <p class="price"><small>desde</small> 4.200 € <small>+ IVA</small></p>
+          <a class="btn btn-ghost js-wa" href="#contacto" data-msg="Hola, me interesa el modelo MANDO 6 Esquina.">Lo quiero</a>
+        </article>
+        <article class="model panel glow">
+          <div class="slot slot-model"><img src="img/modelo-mando-isla.jpg" alt="Modelo MANDO Isla"><span>img/modelo-mando-isla.jpg</span></div>
+          <h3>MANDO Isla</h3><p class="size">6 × 6 m · península o isla</p>
+          <ul><li>Torre central luminosa de cuatro caras</li><li>Dos mostradores</li><li>Zona de reunión</li></ul>
+          <p class="price"><small>desde</small> 5.000 € <small>+ IVA</small></p>
+          <a class="btn btn-ghost js-wa" href="#contacto" data-msg="Hola, me interesa el modelo MANDO Isla de 6 × 6 m.">Lo quiero</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="como">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Cómo funciona</p>
+        <h2>De tu idea a la feria en una o dos semanas</h2>
+      </div>
+      <ol class="steps">
+        <li class="panel glow"><div class="paso-top"><span class="n">1</span><svg class="ico-paso" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 10h32v20H22l-8 7v-7H8z"/><path d="M15 18h18M15 23h11"/></svg></div><h3>Nos cuentas tu feria</h3><p>La medida de tu espacio, la fecha y lo que quieres enseñar.</p></li>
+        <li class="panel glow"><div class="paso-top"><span class="n">2</span><svg class="ico-paso" viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="8" width="20" height="28" rx="2"/><path d="M29 36l12-12 4 4-12 12h-4z"/></svg></div><h3>Diseñamos las dos caras</h3><p>Te enseñamos cómo queda con tu marca antes de fabricar.</p></li>
+        <li class="panel glow"><div class="paso-top"><span class="n">3</span><svg class="ico-paso" viewBox="0 0 48 48" aria-hidden="true"><path d="M4 12h24v20H4zM28 18h9l6 7v7H28z"/><circle cx="12" cy="35" r="3.5"/><circle cx="36" cy="35" r="3.5"/></svg></div><h3>Lo fabricamos y te lo entregamos</h3><p>En una o dos semanas desde que apruebas el diseño.</p></li>
+        <li class="panel glow"><div class="paso-top"><span class="n">4</span><svg class="ico-paso" viewBox="0 0 48 48" aria-hidden="true"><path d="M38 20a14 14 0 0 0-26-5M10 28a14 14 0 0 0 26 5"/><path d="M11 8v7h7M37 40v-7h-7"/></svg></div><h3>Lo usas en todas tus ferias</h3><p>Lo montas, lo guardas y lo vuelves a sacar en la siguiente.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" id="galeria" data-ocultar-vacio>
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Galería</p>
+        <h2>Stands que ya hemos montado</h2>
+        <p class="sub">Uno de nuestros stands en DreamHack quedó entre los mejores del evento con el presupuesto más bajo.</p>
+      </div>
+      <div class="gallery">
+        <figure class="slot"><img src="img/galeria-1.jpg" alt="Stand montado de Mando Stands"><span>img/galeria-1.jpg</span></figure>
+        <figure class="slot"><img src="img/galeria-2.jpg" alt="Stand montado de Mando Stands"><span>img/galeria-2.jpg</span></figure>
+        <figure class="slot"><img src="img/galeria-3.jpg" alt="Stand montado de Mando Stands"><span>img/galeria-3.jpg</span></figure>
+        <figure class="slot"><img src="img/galeria-4.jpg" alt="Stand montado de Mando Stands"><span>img/galeria-4.jpg</span></figure>
+        <figure class="slot"><img src="img/galeria-5.jpg" alt="Stand montado de Mando Stands"><span>img/galeria-5.jpg</span></figure>
+        <figure class="slot"><img src="img/galeria-6.jpg" alt="Stand montado de Mando Stands"><span>img/galeria-6.jpg</span></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="opiniones" data-ocultar-vacio>
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Opiniones</p>
+        <h2>Lo que dicen quienes ya lo tienen</h2>
+      </div>
+      <div class="quotes" id="opiniones-lista"></div>
+    </div>
+  </section>
+
+  <section class="section" id="preguntas">
+    <div class="wrap faq-grid">
+      <div class="head">
+        <p class="eyebrow">Preguntas</p>
+        <h2>Lo que nos suelen preguntar</h2>
+      </div>
+      <div class="faq">
+        <details><summary>¿Cuánto tardáis en entregarlo?</summary><p>Una o dos semanas desde que apruebas el diseño. Si tu feria está cerca, escríbenos hoy y te decimos si llegamos.</p></details>
+        <details><summary>¿Qué significa doble diseño?</summary><p>Cada pared luminosa lleva un diseño por delante y otro por detrás. Puedes usar uno en cada feria o girar la pared según lo que quieras enseñar.</p></details>
+        <details><summary>¿Quién lo monta?</summary><p>Está pensado para que lo monte tu equipo sin herramientas especiales. Si lo prefieres, lo montamos nosotros en la feria.</p></details>
+        <details><summary>¿Puedo cambiar el diseño más adelante?</summary><p>Sí. La estructura se mantiene y solo cambias la gráfica.</p></details>
+        <details><summary>¿Y si mi espacio no es de una medida estándar?</summary><p>Cuéntanos la medida y lo adaptamos. Los modelos son el punto de partida.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contacto">
+    <div class="wrap contact-grid">
+      <div class="head">
+        <p class="eyebrow">Contacto</p>
+        <h2>Cuéntanos tu próxima feria</h2>
+        <p class="sub">Te respondemos con una propuesta y un precio cerrado.</p>
+        <div class="direct">
+          <a class="btn btn-accent js-wa" href="#contacto" data-msg="Hola, quiero información sobre un stand de Mando Stands.">Escríbenos por WhatsApp</a>
+          <p class="mail js-mail-line">o escribe a <span class="js-email">hola@mandostands.es</span></p>
+        </div>
+      </div>
+      <form class="form panel" id="form" novalidate>
+        <div class="field"><label for="f-nombre">Nombre</label><input id="f-nombre" name="nombre" autocomplete="name" required></div>
+        <div class="field"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" autocomplete="organization"></div>
+        <div class="field"><label for="f-tel">Teléfono o correo</label><input id="f-tel" name="contacto" autocomplete="tel" required></div>
+        <div class="field"><label for="f-feria">Feria y fecha</label><input id="f-feria" name="feria" placeholder="Por ejemplo, Matelec, noviembre"></div>
+        <div class="field full"><label for="f-medida">Medida del espacio</label>
+          <select id="f-medida" name="medida"><option>Aún no lo sé</option><option>3 × 3 m</option><option>6 × 3 m</option><option>6 × 3 m en esquina</option><option>6 × 6 m</option><option>Otra medida</option></select>
+        </div>
+        <div class="field full"><label for="f-msg">Algo más</label><textarea id="f-msg" name="mensaje" rows="3" placeholder="Lo que quieres enseñar, cuántas ferias haces al año…"></textarea></div>
+        <div class="form-actions full">
+          <button class="btn btn-accent" type="submit">Enviar por WhatsApp</button>
+          <button class="btn btn-ghost" type="button" id="f-mail">Prefiero correo</button>
+        </div>
+        <p class="status full" id="f-status" role="status"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="logo small"><span class="logo-text"><span class="logo-mando">MANDO</span><span class="logo-stands">stands</span></span></span>
+    <span>© <span id="anio">2026</span> Mando Stands · Stands para ferias en propiedad</span>
+  </div>
+</footer>
+
+<a class="wa-float js-wa" href="#contacto" data-msg="Hola, quiero información sobre un stand de Mando Stands." aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3Z"/></svg>
+</a>
+
+<script>
+/* ===== Datos que hay que rellenar antes de publicar ===== */
+var CONFIG = {
+  // Número de WhatsApp con prefijo y sin espacios ni +, por ejemplo "34600111222".
+  whatsapp: "34609611143",
+  // Vacío mientras no exista el correo del dominio: se ocultan el correo y el botón «Prefiero correo».
+  email: "",
+  // true enseña los huecos de fotos y opiniones vacíos; false los oculta en la web publicada.
+  mostrarHuecos: false,
+  // Opiniones reales de clientes. Mientras esté vacío, la web enseña huecos marcados.
+  // Ejemplo: { texto: "…", nombre: "Nombre Apellido", empresa: "Empresa", foto: "img/testimonio-1.jpg" }
+  opiniones: []
+};
+/* ======================================================== */
+
+(function () {
+  var fmt = new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0, useGrouping: "always" });
+
+  function waUrl(texto) {
+    return "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(texto);
+  }
+  document.querySelectorAll(".js-wa").forEach(function (a) {
+    a.href = waUrl(a.getAttribute("data-msg") || "Hola");
+    a.target = "_blank";
+    a.rel = "noopener";
+  });
+  document.querySelectorAll(".js-email").forEach(function (el) { el.textContent = CONFIG.email; });
+  if (!CONFIG.email) {
+    document.querySelectorAll(".js-mail-line").forEach(function (el) { el.hidden = true; });
+    var fm = document.getElementById("f-mail"); if (fm) fm.hidden = true;
+  }
+  var anio = document.getElementById("anio");
+  if (anio) anio.textContent = new Date().getFullYear();
+
+  /* Secciones sin contenido real: se ocultan en la web publicada */
+  function revisarSecciones() {
+    if (CONFIG.mostrarHuecos) return;
+    document.querySelectorAll("[data-ocultar-vacio]").forEach(function (sec) {
+      var llenos = sec.querySelectorAll(".slot.has-img, .quote:not(.is-empty)").length;
+      sec.hidden = llenos === 0;
+    });
+  }
+  /* Huecos de imagen: si la foto no existe, se queda el hueco marcado o se oculta */
+  document.querySelectorAll(".slot img").forEach(function (img) {
+    function fallo() {
+      var slot = img.parentNode; img.remove();
+      if (!CONFIG.mostrarHuecos && slot) { slot.hidden = true; revisarSecciones(); }
+    }
+    function ok() { if (img.parentNode) { img.parentNode.classList.add("has-img"); img.parentNode.hidden = false; } revisarSecciones(); }
+    if (img.complete) { (img.naturalWidth > 0) ? ok() : fallo(); }
+    else { img.addEventListener("load", ok); img.addEventListener("error", fallo); }
+  });
+
+  /* Opiniones */
+  var lista = document.getElementById("opiniones-lista");
+  if (lista) {
+    var ops = CONFIG.opiniones.length ? CONFIG.opiniones : [0, 1, 2].map(function (i) { return { hueco: i + 1 }; });
+    ops.forEach(function (o) {
+      var card = document.createElement("figure");
+      card.className = "quote panel glow" + (o.hueco ? " is-empty" : "");
+      if (o.hueco) {
+        card.innerHTML = '<div class="slot slot-avatar"><span>img/testimonio-' + o.hueco + '.jpg</span></div>' +
+          '<blockquote>Hueco para la opinión de un cliente real.</blockquote><figcaption>Nombre · Empresa</figcaption>';
+      } else {
+        var foto = o.foto ? '<div class="slot slot-avatar has-img"><img src="' + o.foto + '" alt=""></div>' : "";
+        card.innerHTML = foto + "<blockquote></blockquote><figcaption></figcaption>";
+        card.querySelector("blockquote").textContent = "«" + o.texto + "»";
+        card.querySelector("figcaption").textContent = o.nombre + " · " + o.empresa;
+      }
+      lista.appendChild(card);
+    });
+  }
+  revisarSecciones();
+
+  /* Pared de doble cara */
+  var pared = document.getElementById("pared");
+  var girar = document.getElementById("girar");
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var auto;
+  function voltear() { pared.classList.toggle("flipped"); }
+  if (pared && girar) {
+    girar.addEventListener("click", function () { clearInterval(auto); voltear(); });
+    if (!reduce) auto = setInterval(voltear, 4500);
+  }
+
+  /* Paneles que se iluminan al entrar en pantalla. Se ven igual sin esto. */
+  if ("IntersectionObserver" in window && !reduce) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { e.target.classList.toggle("lit", e.isIntersecting); });
+    }, { threshold: 0.35 });
+    document.querySelectorAll(".glow").forEach(function (el) { io.observe(el); });
+  }
+
+  /* Calculadora */
+  var $ = function (id) { return document.getElementById(id); };
+  var alq = $("c-alquiler"), fer = $("c-ferias"), mod = $("c-modelo"), ext = $("c-extra");
+  function num(el) { var v = parseFloat(el.value); return isFinite(v) && v > 0 ? v : 0; }
+  function calcular() {
+    var a = num(alq), f = Math.max(1, Math.round(num(fer))), p = parseFloat(mod.value), x = num(ext);
+    $("c-ferias-out").textContent = f + (f === 1 ? " feria" : " ferias");
+    var alq1 = a * f, man1 = p + x * f, alq3 = a * f * 3, man3 = p + x * f * 3;
+    var ah1 = alq1 - man1, ah3 = alq3 - man3;
+    $("r-1").textContent = fmt.format(ah1);
+    $("r-3").textContent = fmt.format(ah3);
+    $("r-1").classList.toggle("neg", ah1 < 0);
+    $("r-3").classList.toggle("neg", ah3 < 0);
+    var max = Math.max(alq3, man3, 1);
+    $("b-alq").style.width = (alq3 / max * 100) + "%";
+    $("b-mando").style.width = (man3 / max * 100) + "%";
+    $("v-alq").textContent = fmt.format(alq3);
+    $("v-mando").textContent = fmt.format(man3);
+    var nota = $("r-amort");
+    if (a > x) {
+      var n = Math.ceil(p / (a - x));
+      nota.textContent = n <= 1 ? "Se paga solo en la primera feria." : "Se paga solo en " + n + " ferias.";
+    } else {
+      nota.textContent = "Con estos números el alquiler te sale más barato. Escríbenos y lo vemos contigo.";
+    }
+    var modelo = mod.options[mod.selectedIndex].text.split(" · ")[0];
+    $("calc-cta").href = waUrl("Hola, he usado la calculadora. Pago unos " + fmt.format(a) + " por feria y voy a " + f + " ferias al año. Me interesa el " + modelo + ".");
+  }
+  if (alq) {
+    [alq, fer, mod, ext].forEach(function (el) { el.addEventListener("input", calcular); });
+    $("calc").addEventListener("submit", function (e) { e.preventDefault(); });
+    calcular();
+  }
+
+  /* Formulario de contacto */
+  var form = $("form"), status = $("f-status");
+  function texto() {
+    return [
+      "Hola, os escribo desde la web de Mando Stands.",
+      "Nombre: " + form.nombre.value.trim(),
+      "Empresa: " + form.empresa.value.trim(),
+      "Contacto: " + form.contacto.value.trim(),
+      "Feria y fecha: " + form.feria.value.trim(),
+      "Medida: " + form.medida.value,
+      form.mensaje.value.trim()
+    ].filter(Boolean).join("\n");
+  }
+  function valido() {
+    if (!form.nombre.value.trim() || !form.contacto.value.trim()) {
+      status.textContent = "Escribe tu nombre y un teléfono o correo para que podamos responderte.";
+      (form.nombre.value.trim() ? form.contacto : form.nombre).focus();
+      return false;
+    }
+    return true;
+  }
+  if (form) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!valido()) return;
+      window.open(waUrl(texto()), "_blank", "noopener");
+      status.textContent = "Te hemos preparado el mensaje en WhatsApp. Solo falta que lo envíes.";
+    });
+    $("f-mail").addEventListener("click", function () {
+      if (!valido()) return;
+      window.location.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Presupuesto de stand") + "&body=" + encodeURIComponent(texto());
+      status.textContent = "Te hemos preparado el correo. Si no se abre, escríbenos a " + CONFIG.email + ".";
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

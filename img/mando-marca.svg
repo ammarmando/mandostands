@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Mando Stands">
+  <!-- La M es un stand visto de frente: dos postes, la cabecera en V y el marco iluminado alrededor -->
+  <rect x="4" y="4" width="56" height="56" rx="5" fill="none" stroke="#FF6B1A" stroke-width="4"/>
+  <path d="M17 48V17l15 16 15-16v31" fill="none" stroke="currentColor" stroke-width="7" stroke-linejoin="miter" stroke-linecap="square"/>
+  <path d="M12 54h40" stroke="#FF6B1A" stroke-width="2" opacity=".6"/>
+</svg>
