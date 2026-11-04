@@ -255,6 +255,23 @@ output { font-weight: 700; font-variant-numeric: tabular-nums; }
 .price { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 6px; }
 .price small:first-child { flex-basis: 100%; font-size: .8125rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: -2px; }
 
+/* Todo incluido */
+.incluido { display: grid; gap: 14px; }
+.incluido ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px 28px; grid-template-columns: 1fr; }
+@media (min-width: 760px) { .incluido ul { grid-template-columns: 1fr 1fr; } }
+.incluido li { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: start; color: var(--muted); }
+.incluido li strong { color: var(--ink); }
+.incluido svg { width: 26px; height: 26px; fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Stands a medida */
+.medida-grid { grid-template-columns: 1fr; }
+@media (min-width: 960px) { .medida-grid { grid-template-columns: .9fr 1.1fr; align-items: start; gap: 56px; } }
+.medida-grid .actions { margin-top: 8px; }
+.medida-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; min-width: 0; }
+.medida-list li { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; }
+.medida-list .n { font-size: 1.6rem; }
+.ico-medida { width: 34px; height: 34px; fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; margin-top: 2px; }
+
 /* Versión A: entrar en un stand iluminado. Fondo casi negro, focos y resplandor naranja. Solo tema oscuro. */
 :root {
   --bg: #0A0A0C; --bg-2: #111115; --panel: #16161B; --ink: #F5F3EF; --muted: #A9A7AF;
@@ -303,6 +320,7 @@ output { font-weight: 700; font-variant-numeric: tabular-nums; }
     </a>
     <nav class="nav" aria-label="Principal">
       <a href="#modelos">Modelos</a>
+      <a href="#a-medida">A medida</a>
       <a href="#ahorro">Ahorro</a>
       <a href="#galeria">Galería</a>
       <a href="#contacto">Contacto</a>
@@ -445,6 +463,34 @@ output { font-weight: 700; font-variant-numeric: tabular-nums; }
           <a class="btn btn-ghost js-wa" href="#contacto" data-msg="Hola, me interesa el modelo MANDO Isla de 6 × 6 m.">Lo quiero</a>
         </article>
       </div>
+      <div class="incluido panel">
+        <p class="eyebrow">Todo incluido en el precio</p>
+        <ul>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4l10-10-4-4L4 16zM14 6l4 4"/></svg><span><strong>Diseño de las dos caras</strong> con tu marca. No tienes que traer nada hecho.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span><strong>Lo ves antes de fabricar.</strong> Te enseñamos cómo queda tu stand.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><strong>Plazo cerrado:</strong> una o dos semanas desde que apruebas el diseño.</span></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M6 21V9M18 21V9M4 9h16M9 13h6"/></svg><span><strong>Montaje si lo necesitas.</strong> Lo monta tu equipo o lo montamos nosotros.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="a-medida">
+    <div class="wrap medida-grid">
+      <div class="head">
+        <p class="eyebrow">Stands a medida</p>
+        <h2>¿Necesitas algo más grande o diferente?</h2>
+        <p class="sub">Para espacios grandes o proyectos especiales, diseñamos el stand desde cero y lo construimos con nuestro socio constructor. Tú nos cuentas la idea y nosotros nos ocupamos del resto.</p>
+        <div class="actions">
+          <a class="btn btn-accent js-wa" href="#contacto" data-msg="Hola, quiero un stand a medida. Os cuento mi proyecto:">Cuéntanos tu proyecto</a>
+        </div>
+      </div>
+      <ul class="medida-list">
+        <li class="panel glow"><svg class="ico-medida" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l9 5v10l-9 5-9-5V7z"/><path d="M12 22V12M21 7l-9 5-9-5"/></svg><div><h3>Diseño 3D de tu espacio</h3><p>Lo ves terminado antes de construir nada, con tu marca y tus medidas.</p></div></li>
+        <li class="panel glow"><svg class="ico-medida" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 7l3-3 3 3-3 3zM4 20l9-9M15 13l5 5-2 2-5-5"/></svg><div><h3>Construcción y montaje</h3><p>Fabricamos, transportamos y montamos el stand en la feria, y lo desmontamos al terminar.</p></div></li>
+        <li class="panel glow"><svg class="ico-medida" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14-5M4 13a8 8 0 0 0 14 5"/><path d="M5 2v4h4M19 22v-4h-4"/></svg><div><h3>Modular si repites ferias</h3><p>Podemos hacerlo con sistemas que se reconfiguran, para que lo vuelvas a usar en otros espacios.</p></div></li>
+        <li class="panel glow"><svg class="ico-medida" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><div><h3>Un solo interlocutor</h3><p>Desde la primera idea hasta el desmontaje, hablas siempre con nosotros.</p></div></li>
+      </ul>
     </div>
   </section>
 
@@ -502,6 +548,7 @@ output { font-weight: 700; font-variant-numeric: tabular-nums; }
         <details><summary>¿Qué significa doble diseño?</summary><p>Cada pared luminosa lleva un diseño por delante y otro por detrás. Puedes usar uno en cada feria o girar la pared según lo que quieras enseñar.</p></details>
         <details><summary>¿Quién lo monta?</summary><p>Está pensado para que lo monte tu equipo sin herramientas especiales. Si lo prefieres, lo montamos nosotros en la feria.</p></details>
         <details><summary>¿Puedo cambiar el diseño más adelante?</summary><p>Sí. La estructura se mantiene y solo cambias la gráfica.</p></details>
+        <details><summary>¿Hacéis stands a medida?</summary><p>Sí. Para espacios grandes o proyectos especiales diseñamos el stand desde cero y lo construimos con nuestro socio constructor. Cuéntanos tu idea y te preparamos una propuesta.</p></details>
         <details><summary>¿Y si mi espacio no es de una medida estándar?</summary><p>Cuéntanos la medida y lo adaptamos. Los modelos son el punto de partida.</p></details>
       </div>
     </div>
